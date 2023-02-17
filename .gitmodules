@@ -1,0 +1,3 @@
+[submodule "iam"]
+	path = iam
+	url = https://github.com/casdoor/casdoor.git
