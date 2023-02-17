@@ -6,14 +6,14 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "postinstall": "husky install && npm run types:pkgJson",
+    "postinstall": "husky install && npm run types",
     "cz": "git-cz",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start": "cross-env NODE_ENV=production nest start",
+    "start:dev": "cross-env NODE_ENV=development nest start --watch",
+    "start:debug": "cross-env NODE_ENV=development nest start --debug --watch",
+    "start:prod": "cross-env NODE_ENV=production node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -26,13 +26,20 @@
     "@nestjs/common": "^9.3.9",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.3.9",
+    "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.3.9",
     "@nestjs/swagger": "^6.2.1",
+    "@nestjs/typeorm": "^9.0.1",
     "js-yaml": "^4.1.0",
     "module-alias": "^2.2.2",
+    "mysql2": "^3.1.2",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "pg": "^8.9.0",
     "quicktype-core": "^23.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "typeorm": "^0.3.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.3",
@@ -44,9 +51,11 @@
     "@types/jest": "29.4.0",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "18.13.0",
+    "@types/passport-jwt": "^3.0.8",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -92,6 +101,8 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "~types": "types/"
-  }
+    "~types": "types/",
+    "@": "src/"
+  },
+  "packageManager": "^pnpm@7.27.0"
 }

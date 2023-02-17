@@ -14,6 +14,7 @@ export interface PkgJSON {
   'lint-staged': LintStaged;
   config: Config;
   _moduleAliases: ModuleAliases;
+  packageManager: string;
 }
 
 export interface ModuleAliases {
@@ -33,13 +34,20 @@ export interface Dependencies {
   '@nestjs/common': string;
   '@nestjs/config': string;
   '@nestjs/core': string;
+  '@nestjs/passport': string;
   '@nestjs/platform-express': string;
   '@nestjs/swagger': string;
+  '@nestjs/typeorm': string;
   'js-yaml': string;
   'module-alias': string;
+  mysql2: string;
+  passport: string;
+  'passport-jwt': string;
+  pg: string;
   'quicktype-core': string;
   'reflect-metadata': string;
   rxjs: string;
+  typeorm: string;
 }
 
 export interface DevDependencies {
@@ -52,6 +60,7 @@ export interface DevDependencies {
   '@types/jest': string;
   '@types/js-yaml': string;
   '@types/node': string;
+  '@types/passport-jwt': string;
   '@types/supertest': string;
   '@typescript-eslint/eslint-plugin': string;
   '@typescript-eslint/parser': string;

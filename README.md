@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+LEABY, derived from the Danish phrase *Let at bygge*, which means "easy to build".
 
 ## Installation
 
