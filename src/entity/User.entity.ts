@@ -187,7 +187,8 @@ export type CountryCallingCodeType =
   | 1787
   | 1809
   | 1876
-  | 1890;
+  | 1890
+  | null;
 
 export const CountryCallingMap: Map<
   CountryCallingCodeType,
@@ -451,32 +452,50 @@ export const CountryCallingMap: Map<
   ],
 ]);
 
+export type Role = 'ordinaryMember' | 'bronzeMember' | null;
+
+const roleMap: Map<Role, { role: Role; displayNameCn: string }> = new Map([
+  ['ordinaryMember', { role: 'ordinaryMember', displayNameCn: '普通会员' }],
+  ['bronzeMember', { role: 'bronzeMember', displayNameCn: '青铜会员' }],
+]);
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  readonly id: number;
 
   @Column({
     length: 100,
     type: 'varchar',
+    nullable: false,
   })
   username: string;
 
   @Column({
     length: 100,
     type: 'varchar',
+    nullable: false,
   })
   password: string;
 
   @Column({
     length: 32,
     type: 'char',
+    nullable: false,
   })
   slat: string;
 
   @Column({
+    type: 'enum',
+    enum: [...roleMap.keys()],
+    default: roleMap.keys().next().value,
+  })
+  role: Role;
+
+  @Column({
     length: 100,
     type: 'varchar',
+    nullable: true,
   })
   email: string;
 
@@ -484,12 +503,14 @@ export class User {
     type: 'enum',
     enum: [...CountryCallingMap.keys()],
     default: 86,
+    nullable: true,
   })
   countryCallingCode: CountryCallingCodeType;
 
   @Column({
     length: 20,
     type: 'varchar',
+    nullable: true,
   })
   phone: number;
 
