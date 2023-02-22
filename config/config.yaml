@@ -13,3 +13,6 @@ db:
   username: root
   password: Aa123456
   database: leaby
+jwt:
+  # jwt 的 secret，如果是 auto 则会在每次系统启动时重新生成，建议填入一个自生成的 uuid
+  secret: auto

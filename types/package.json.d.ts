@@ -20,6 +20,7 @@ export interface PkgJSON {
 export interface ModuleAliases {
   '@root': string;
   '~types': string;
+  '@': string;
 }
 
 export interface Config {
@@ -34,20 +35,24 @@ export interface Dependencies {
   '@nestjs/common': string;
   '@nestjs/config': string;
   '@nestjs/core': string;
+  '@nestjs/jwt': string;
   '@nestjs/passport': string;
   '@nestjs/platform-express': string;
   '@nestjs/swagger': string;
   '@nestjs/typeorm': string;
   'js-yaml': string;
+  lodash: string;
   'module-alias': string;
   mysql2: string;
   passport: string;
   'passport-jwt': string;
+  'passport-local': string;
   pg: string;
   'quicktype-core': string;
   'reflect-metadata': string;
   rxjs: string;
   typeorm: string;
+  uuid: string;
 }
 
 export interface DevDependencies {
@@ -59,11 +64,15 @@ export interface DevDependencies {
   '@types/express': string;
   '@types/jest': string;
   '@types/js-yaml': string;
+  '@types/lodash': string;
   '@types/node': string;
   '@types/passport-jwt': string;
+  '@types/passport-local': string;
   '@types/supertest': string;
+  '@types/uuid': string;
   '@typescript-eslint/eslint-plugin': string;
   '@typescript-eslint/parser': string;
+  'cross-env': string;
   eslint: string;
   'eslint-config-prettier': string;
   'eslint-plugin-prettier': string;

@@ -5,6 +5,7 @@ export interface Config {
   globalPrefix: string;
   swaggerPath: string;
   db: DB;
+  jwt: Jwt;
 }
 
 export interface DB {
@@ -14,5 +15,8 @@ export interface DB {
   username: string;
   password: string;
   database: string;
-  synchronize: boolean;
+}
+
+export interface Jwt {
+  secret: string;
 }

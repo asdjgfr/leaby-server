@@ -17,12 +17,12 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<User | null> {
-    return this.usersRepository.findOneBy({ id, isActive: true });
+  findOne(username: string): Promise<User | null> {
+    return this.usersRepository.findOneBy({ username, isActive: true });
   }
 
-  async remove(id: number): Promise<void> {
-    const user = await this.findOne(id);
+  async remove(username: string): Promise<void> {
+    const user = await this.findOne(username);
     if (user) {
       user.isActive = false;
       await this.usersRepository.save(user);
