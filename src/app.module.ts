@@ -8,6 +8,7 @@ import configuration from '../config/configuration';
 import type { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import type { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 import { User } from '@/entity/User.entity';
+import { AboutModule } from './about/about.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { User } from '@/entity/User.entity';
     }),
     AuthModule,
     UsersModule,
+    AboutModule,
   ],
   controllers: [AppController],
   providers: [AppService],

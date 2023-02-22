@@ -17,7 +17,6 @@ import { AuthController } from './auth.controller';
       signOptions: { expiresIn: '3600s' },
     }),
   ],
-
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
   controllers: [AuthController],

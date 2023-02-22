@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Role } from '@/enums/role.enum';
 
 export type CountryCallingCodeType =
   | 1
@@ -452,13 +453,6 @@ export const CountryCallingMap: Map<
   ],
 ]);
 
-export type Role = 'ordinaryMember' | 'bronzeMember' | null;
-
-const roleMap: Map<Role, { role: Role; displayNameCn: string }> = new Map([
-  ['ordinaryMember', { role: 'ordinaryMember', displayNameCn: '普通会员' }],
-  ['bronzeMember', { role: 'bronzeMember', displayNameCn: '青铜会员' }],
-]);
-
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -486,11 +480,9 @@ export class User {
   slat: string;
 
   @Column({
-    type: 'enum',
-    enum: [...roleMap.keys()],
-    default: roleMap.keys().next().value,
+    default: Role.User0,
   })
-  role: Role;
+  roles: string;
 
   @Column({
     length: 100,
