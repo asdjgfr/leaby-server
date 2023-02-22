@@ -1,6 +1,7 @@
 import type { PkgJSON } from '~types/package.json';
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
+import helmet from 'helmet';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { readFileSync } from 'node:fs';
@@ -21,6 +22,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup(configuration.swaggerPath, app, document);
   app.setGlobalPrefix(configuration.globalPrefix);
+  app.use(helmet());
   await app.listen(configuration.port);
 }
 
