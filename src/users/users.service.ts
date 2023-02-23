@@ -18,7 +18,14 @@ export class UsersService {
   }
 
   findOne(username: string): Promise<User | null> {
-    return this.usersRepository.findOneBy({ username, isActive: true });
+    let user = this.usersRepository.findOneBy({ username, isActive: true });
+    if (!user) {
+      user = this.usersRepository.findOneBy({
+        email: username,
+        isActive: true,
+      });
+    }
+    return user;
   }
 
   async remove(username: string): Promise<void> {

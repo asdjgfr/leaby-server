@@ -40,6 +40,7 @@ export interface Dependencies {
   '@nestjs/platform-express': string;
   '@nestjs/swagger': string;
   '@nestjs/typeorm': string;
+  helmet: string;
   'js-yaml': string;
   lodash: string;
   'module-alias': string;
