@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '@/entity/User.entity';
-import { isEmpty } from 'lodash';
+import { v4 } from 'uuid';
+import { hexPassword } from '@/utils/crypto';
+import { Role } from '@/enums/role.enum';
 
 @Injectable()
 export class UsersService {
@@ -10,8 +12,17 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) {}
-  async create(params: User): Promise<void> {
-    if (isEmpty(params.username)) await this.usersRepository.create();
+  async create(params: { username: string; password: string; email: string }) {
+    const slat = v4();
+
+    const user = new User();
+    user.username = params.username;
+    user.password = hexPassword(slat, params.password);
+    user.email = params.email;
+    user.slat = slat;
+    user.roles = Role.User0;
+
+    await this.usersRepository.save(user);
   }
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
@@ -27,7 +38,9 @@ export class UsersService {
     }
     return user;
   }
-
+  findOneByKey(key: string, val: unknown): Promise<User | null> {
+    return this.usersRepository.findOneBy({ [key]: val, isActive: true });
+  }
   async remove(username: string): Promise<void> {
     const user = await this.findOne(username);
     if (user) {
